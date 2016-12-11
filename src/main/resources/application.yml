@@ -58,7 +58,6 @@ spring:
 eureka:
   instance:
     preferIpAddress: true
-    hostName: dockerized-eureka-server
   client:
     serviceUrl:
       defaultZone: http://dockerized-eureka-server:8761/eureka/
