@@ -1,0 +1,83 @@
+info:
+  description: "Customer Core Api for dockerization."
+  apiDocumentation: "TBD"
+
+server:
+  port: 8094
+
+eureka:
+  instance:
+    leaseRenewalIntervalInSeconds: 3
+    metadataMap:
+      instanceId: ${vcap.application.instance_id:${spring.application.name}:${spring.application.instance_id:${random.value}}}
+  client:
+    # Default values comes from org.springframework.cloud.netflix.eurek.EurekaClientConfigBean
+    registryFetchIntervalSeconds: 5
+    instanceInfoReplicationIntervalSeconds: 5
+    initialInstanceInfoReplicationIntervalSeconds: 5
+
+spring:
+  data:
+    mongodb:
+      database: metadata_db
+  profiles:
+    active: docker
+
+cloud:
+    services:
+      registrationMethod: route
+
+microservice:
+    config:
+      swagger:
+        controllerPackage: com.gl.api.core.customer.controller
+        author: Saurabh Malik <saurabh.malik1@globallogic.com>
+        apiName: Customer Core API Microservice
+        apiVersion: 1.0.0
+        apiDescription: Core API for Customer create, update & search
+
+security:
+  basic:
+    enabled: false
+
+endpoints:
+  health:
+    sensitive: false
+management:
+  security:
+    enabled: false
+  health:
+    rabbit:
+      enabled: false
+
+---
+# For deployment in Docker containers
+spring:
+  profiles: docker
+
+eureka:
+  instance:
+    preferIpAddress: true
+    hostName: dockerized-eureka-server
+  client:
+    serviceUrl:
+      defaultZone: http://dockerized-eureka-server:8761/eureka/
+
+---
+# For deployment in Docker containers
+spring:
+  profiles: local
+
+eureka:
+  instance:
+    preferIpAddress: true
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+
+
+      
+---
+spring:
+  name: customer-core-service
+
