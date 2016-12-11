@@ -28,6 +28,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.google.gson.GsonBuilder;
 import com.gl.api.core.customer.config.MicroserviceConfig;
+import com.gl.api.core.customer.model.Customer;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
@@ -40,7 +41,7 @@ import io.swagger.annotations.ApiOperation;
  */
 @Validated
 @RestController
-@RequestMapping("/api/core/customer")
+@RequestMapping("/api/core/customers")
 @Api("Customer controller")
 public class CustomerController {
 	private static final Logger LOGGER = LoggerFactory.getLogger(CustomerController.class);
@@ -58,13 +59,30 @@ public class CustomerController {
 	 * @return
 	 */
 	@ApiOperation(value = "Mocked API for test", notes = "Mocked API")
-	@RequestMapping(value = "/getMessage", method = RequestMethod.GET, produces = {
+	@RequestMapping(value = "/test", method = RequestMethod.GET, produces = {
 			MediaType.APPLICATION_JSON_VALUE })
-	public ResponseEntity<Map<String, String>> getMessage(@RequestParam String message) {
+	public ResponseEntity<Map<String, String>> getTestMessage(@RequestParam String message) {
 		LOGGER.info("Controller processInit !");
 		Map<String, String> response = new HashMap<>();
 		response.put("response", "Hi this is mocked response for your message - " + message);
 		return new ResponseEntity<>(response, HttpStatus.OK);
+	}
+
+	/**
+	 * @param wfType
+	 * @param tenantId
+	 * @param projectId
+	 * @param jsonBody
+	 * @return
+	 */
+	@ApiOperation(value = "Get Customer Details", notes = "Mocked API")
+	@RequestMapping(value = "/{customerId}", method = RequestMethod.GET, produces = {
+			MediaType.APPLICATION_JSON_VALUE })
+	public ResponseEntity<Customer> getCustomer(@PathVariable String customerId) {
+
+		//Mocked
+		Customer mockCustomer = new Customer("Saurabh", "201304", "Noida", true);
+		return new ResponseEntity<Customer>(mockCustomer, HttpStatus.OK);
 	}
 
 
