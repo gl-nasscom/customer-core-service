@@ -4,5 +4,4 @@ sut:
   links:
     - customer-core-service
 customer-core-service:
-  build: .
-  dockerfile: Dockerfile
+  image: 'glnasscom/customer-core-service'
