@@ -2,6 +2,7 @@ sut:
   build: .
   dockerfile: dockerFile.test
   links:
-    - customer-service
-customer-service:
-  image: 'glnasscom/customer-core-service'
+    - customer-core-service
+customer-core-service:
+  build: .
+  dockerfile: Dockerfile
