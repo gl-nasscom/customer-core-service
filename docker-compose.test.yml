@@ -6,5 +6,3 @@ sut:
 customer-core-service:
   build: .
   dockerfile: Dockerfile
-  ports:
-    - '8094:8094'
