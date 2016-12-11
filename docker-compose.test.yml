@@ -7,4 +7,4 @@ customer-core-service:
   build: .
   dockerfile: Dockerfile
   ports:
-    - '80:8094'
+    - '8094:8094'
