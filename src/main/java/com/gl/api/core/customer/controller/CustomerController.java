@@ -52,11 +52,7 @@ public class CustomerController {
 
 
 	/**
-	 * @param wfType
-	 * @param tenantId
-	 * @param projectId
-	 * @param jsonBody
-	 * @return
+	 * @param message
 	 */
 	@ApiOperation(value = "Mocked API for test", notes = "Mocked API")
 	@RequestMapping(value = "/test", method = RequestMethod.GET, produces = {
@@ -69,10 +65,7 @@ public class CustomerController {
 	}
 
 	/**
-	 * @param wfType
-	 * @param tenantId
-	 * @param projectId
-	 * @param jsonBody
+	 * @param customerId
 	 * @return
 	 */
 	@ApiOperation(value = "Get Customer Details", notes = "Mocked API")
