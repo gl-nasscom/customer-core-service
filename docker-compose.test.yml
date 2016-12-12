@@ -2,7 +2,7 @@ sut:
   build: .
   dockerfile: dockerFile.test
   links:
-    - customer-core-service
-customer-core-service:
+    - customer
+customer:
   build: .
   dockerfile: Dockerfile
