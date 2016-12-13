@@ -60,7 +60,7 @@ public class CustomerController {
 	public ResponseEntity<Map<String, String>> getTestMessage(@RequestParam String message) {
 		LOGGER.info("Controller processInit !");
 		Map<String, String> response = new HashMap<>();
-		response.put("response", "Hi this is mocked response for your message - " + message);
+		response.put("response", "Hi this is mocked response for your message - v1 - " + message);
 		return new ResponseEntity<>(response, HttpStatus.OK);
 	}
 
